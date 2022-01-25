@@ -43,27 +43,31 @@ def compare_number(user_guess):
          print("The number is :",com_number) 
          return 0
          
-def user_guess(attempt):    
-    global threshold
-    while threshold!=attempt:
-    
-        correct_guess='false'
-        while correct_guess!='true':
-            threshold+=1
-            user_guess=int(input("Make a Guess:"))
-            if user_guess>100:
-                print("Please enter valid number")
-                correct_guess='false'
-                threshold-=1
-            else:
-                no= compare_number(user_guess)
-                if no==1:
-                    print("The remaining attempts:",attempt-threshold)
-                    
+def correct_guess(attempt):
+    global threshold    
+    correct_guess='false'
+    while correct_guess!='true':
+                threshold+=1
+                user_guess=int(input("Make a Guess:"))
+                if user_guess>100:
+                    print("Please enter valid number")
+                    correct_guess='false'
+                    threshold-=1
+                   # print(threshold)
                 else:
-                    break
-                
+                    no= compare_number(user_guess)
+                    if no==1:
+                        print("The remaining attempts:",attempt-threshold)
+                       # print(threshold)
+                        
+                    else:
+                        break  
+                    if threshold==attempt:
+                        print("You ran out of Attempts")
+                        break     
+  
         
+  
 
 print(logo)
 print("Welcome to the Guess the Number....")
@@ -72,10 +76,8 @@ print("I'm thinking about a number between 1 and 100.")
 
 difficulty=input("Please select the Difficulty of game 'easy' or 'hard':")
 attempt=difficulty_level(difficulty)
-user_guess(attempt)
+correct_guess(attempt)
 
-
-               
              
              
         
